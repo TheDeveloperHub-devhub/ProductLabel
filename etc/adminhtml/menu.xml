@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="DeveloperHub_ProductLabel::product_label"
+             title="Product Label"
+             module="DeveloperHub_ProductLabel" sortOrder="20"
+             resource="DeveloperHub_ProductLabel::menu"
+             parent="DeveloperHub_Core::developerhub"/>
+
+        <add id="DeveloperHub_ProductLabel::add_product_label"
+             title="Add Product Label"
+             module="DeveloperHub_ProductLabel"
+             sortOrder="20"
+             parent="DeveloperHub_Core::developerhub"
+             action="product_label/label/index"
+             resource="DeveloperHub_ProductLabel::add_product_label"/>
+
+        <add id="DeveloperHub_ProductLabel::product_label_rules"
+             title="Static Ribbons Attachment"
+             module="DeveloperHub_ProductLabel"
+             parent="DeveloperHub_ProductLabel::product_label"
+             sortOrder="40"
+             action="product_label/staticribbons/index"
+             resource="DeveloperHub_ProductLabel::product_label_rules"/>
+
+    </menu>
+</config>

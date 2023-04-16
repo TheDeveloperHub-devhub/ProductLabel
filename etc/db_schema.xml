@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="developerhub_product_label" resource="default" engine="innodb" comment="DeveloperHub Product Label Table">
+
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Label Id"/>
+        <column xsi:type="varchar" name="ribbon_name" nullable="false" length="255" comment="Ribbon Name"/>
+        <column xsi:type="varchar" name="font_color" nullable="false" length="255" comment="Font Color"/>
+        <column xsi:type="varchar" name="background_color" nullable="false" length="255" comment="Background Color"/>
+        <column xsi:type="varchar" name="ribbon_type" nullable="false" comment="Label Type"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <index referenceId="DEVELOPERHUB_PRODUCT_LABEL_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+    <table name="catalogrule">
+        <column name="id" nullable="true" xsi:type="int" comment="Label ID as Foreign Key to catalogrule"/>
+        <constraint xsi:type="foreign"
+                    referenceId="CATALOG_RULE_RULE_ID_TO_RULE_ID"
+                    table="catalogrule" column="rule_id"
+                    referenceTable="developerhub_product_label"
+                    referenceColumn="id" onDelete="CASCADE"/>
+    </table>
+
+
+    <table name="developerhub_static_ribbons_attachments" resource="default" engine="innodb"
+           comment="DeveloperHub Product Label Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Attachment Id"/>
+        <column xsi:type="varchar" name="attachment_type" nullable="false" length="255" comment="Attachment Type"/>
+        <column xsi:type="varchar" name="ribbon_ids" nullable="false" length="255" comment="Ribbons Ids"/>
+        <column xsi:type="varchar" name="product_ids" nullable="true" length="255" comment="Product Ids"/>
+        <column xsi:type="varchar" name="category_ids" nullable="true" comment="Categories Ids"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <index referenceId="DEVELOPERHUB_STATIC_RIBBONS_ATTACHMENTS_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+</schema>

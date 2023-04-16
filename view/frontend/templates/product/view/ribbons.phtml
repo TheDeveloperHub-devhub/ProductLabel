@@ -1,0 +1,81 @@
+<?php
+/* @var $block \Magento\Framework\View\Element\Template */
+/** @var $viewModel /DeveloperHub\Label\ViewModel/StaticRibbons */
+/** @var $dynamicRibbonViewModel /DeveloperHub\Label\ViewModel/DynamicRibbons */
+?>
+<?php $viewModel = $block->getData("staticRibbonViewModel"); ?>
+<?php $loadedProduct = $viewModel->getLoadedProduct() ?>
+
+
+<?php $ribbonsDataId = $viewModel->getRibbonsData(
+    $loadedProduct->getId()
+) ?>
+<?php if (isset($ribbonsDataId)): ?>
+    <?php foreach ($ribbonsDataId as $ribbonData): ?>
+        <h5 style="border:2px ;
+            padding: 5px;
+            margin-top:0;
+            font-size: small;
+            margin-bottom: 5px;
+            display: inline-block;
+            border-radius: 5px;
+            background-color: <?= ($ribbonData->getData('background_color')) ?> ;
+            color: <?= ($ribbonData->getData('font_color')) ?>">
+            <?= __($ribbonData->getData('ribbon_name')) ?>
+        </h5>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php
+foreach ($loadedProduct->getCategoryIds() as $categoryId)
+{
+$ribbonsDataCategory =$viewModel->getRibbonsDataforCategoryIds($categoryId);
+   if (isset($ribbonsDataCategory)){
+    foreach ($ribbonsDataCategory as $ribbonData){ ?>
+        <h5 style="border:2px ;
+            padding: 5px;
+            margin-top:0;
+            font-size: small;
+            margin-bottom: 5px;
+            display: inline-block;
+            border-radius: 5px;
+            background-color: <?= ($ribbonData->getData('background_color')) ?> ;
+            color: <?= ($ribbonData->getData('font_color')) ?>">
+            <?= __($ribbonData->getData('ribbon_name')) ?>
+        </h5>
+        <?php
+    }
+ }
+}
+?>
+
+
+
+
+<?php $dynamicRibbonViewModel = $block->getData("dynamicRibbonViewModel"); ?>
+<?php $loadedProduct = $dynamicRibbonViewModel->getLoadedProduct() ?>
+<?php if ($loadedProduct->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE): ?>
+    <?php $childIds = $dynamicRibbonViewModel->getChildIds($loadedProduct->getId()) ?>
+    <?php $childIds = implode(',', $childIds[0]) ?>
+    <?php $dynamicRibbonsData = $dynamicRibbonViewModel->getDynamicRibbonsData($childIds) ?>
+<?php else: ?>
+    <?php $dynamicRibbonsData = $dynamicRibbonViewModel->getDynamicRibbonsData($loadedProduct->getId()) ?>
+<?php endif; ?>
+
+<?php if (isset($dynamicRibbonsData)): ?>
+    <?php foreach ($dynamicRibbonsData as $ribbonData): ?>
+        <h5 style="border:2px ;
+            padding: 5px;
+            margin-top:0;
+            margin-bottom: 5px;
+            display: inline-block;
+            border-radius: 5px;
+            background-color: <?= ($ribbonData->getData('background_color')) ?> ;
+            color: <?= ($ribbonData->getData('font_color')) ?>">
+            <?= __($ribbonData->getData('ribbon_name')) ?>
+        </h5>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+
+

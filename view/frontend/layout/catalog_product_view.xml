@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="product.ribbons" as="productribbons" label="Product Product Ribbons" htmlTag="div"
+                       htmlClass="addon-title" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="product.ribbons.template"
+                       template="DeveloperHub_ProductLabel::product/view/ribbons.phtml" before="product.info.main">
+                    <arguments>
+                        <argument name="staticRibbonViewModel" xsi:type="object">
+                            DeveloperHub\ProductLabel\ViewModel\StaticRibbons
+                        </argument>
+                        <argument name="dynamicRibbonViewModel" xsi:type="object">
+                            DeveloperHub\ProductLabel\ViewModel\DynamicRibbons
+                        </argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

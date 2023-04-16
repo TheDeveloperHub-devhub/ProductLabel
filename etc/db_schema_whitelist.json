@@ -1,0 +1,25 @@
+{
+    "developerhub_product_label": {
+        "column": {
+            "id": true,
+            "ribbon_name": true,
+            "font_color": true,
+            "background_color": true,
+            "ribbon_type": true
+        },
+        "index": {
+            "DEVELOPERHUB_PRODUCT_LABEL_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "catalogrule": {
+        "column": {
+            "id": true
+        },
+        "constraint": {
+            "CATALOGRULE_RULE_ID_DEVELOPERHUB_PRODUCT_LABEL_ID": true
+        }
+    }
+}

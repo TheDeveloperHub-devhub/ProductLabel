@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">product_label_form.product_label_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Product Label Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back">
+                <url path="*/*/index"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="save">
+                <url path="*/*/save"/>
+                <class>primary</class>
+                <label translate="true">Save</label>
+            </button>
+        </buttons>
+        <namespace>product_label_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>product_label_form.product_label_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="developerhub_items_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="DeveloperHub\ProductLabel\Ui\ProductLabel\DataProvider" name="product_label_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="product_label_details">
+        <settings>
+            <label translate="true">Product Label Details</label>
+            <collapsible>false</collapsible>
+            <opened>true</opened>
+        </settings>
+
+        <field name="ribbon_name" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Ribbon Name</label>
+                <dataScope>ribbon_name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <colorPicker name="font_color"
+                     class="Magento\Ui\Component\Form\Element\ColorPicker"
+                     component="Magento_Ui/js/form/element/color-picker">
+            <settings>
+                <required>true</required>
+                <label translate="true">Font Color</label>
+                <elementTmpl>ui/form/element/color-picker</elementTmpl>
+                <colorFormat>hex</colorFormat>
+                <colorPickerMode>full</colorPickerMode>
+                <dataScope>font_color</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </colorPicker>
+
+        <colorPicker name="background_color"
+                     class="Magento\Ui\Component\Form\Element\ColorPicker"
+                     component="Magento_Ui/js/form/element/color-picker">
+            <settings>
+                <required>true</required>
+                <label translate="true">Background Color</label>
+                <elementTmpl>ui/form/element/color-picker</elementTmpl>
+                <colorFormat>hex</colorFormat>
+                <colorPickerMode>full</colorPickerMode>
+                <dataScope>background_color</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </colorPicker>
+
+        <field name="ribbon_type" formElement="select" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">DeveloperHub\ProductLabel\Model\Config\Source</item>
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Ribbon Type</item>
+                    <item name="componentDisabled" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Ribbon Type</label>
+                <dataScope>ribbon_type</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+    </fieldset>
+</form>
+
+
